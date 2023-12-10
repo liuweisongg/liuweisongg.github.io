@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgSnipaste_2023-12-05_14-50-49.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//img%E6%8D%95%E8%8E%B7.PNG">
 <meta property="article:published_time" content="2023-12-05T08:41:26.000Z">
-<meta property="article:modified_time" content="2023-12-05T13:18:25.153Z">
+<meta property="article:modified_time" content="2023-12-10T06:44:31.968Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="网络基础知识与抓包软件简介">
 <meta name="twitter:card" content="summary">
@@ -243,8 +243,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-05 21:18:25</span>
-            <span class="mobile">2023-12-05 21:18:25</span>
+            <span class="desktop">2023-12-10 14:44:31</span>
+            <span class="mobile">2023-12-10 14:44:31</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -314,8 +314,12 @@
                       style="zoom:50%;" 
                 >
 
-
-
+<p>应用层：网络服务与最终用户的一个接口各种应用程序协议<br>                协议有：HTTP(超文本传输协议) FTP（文本传输协议） TFTP（简单文件传输协议） SMTP（简单邮件传				输协议） SNMP（简单网络管理协议） DNS（域名系统） TELNET（远程终端协议） HTTPS（超文本传				输安全协议） POP3（邮局协议版本3 ） DHCP（动态主机配置协议）<br>表示层：数据的表示、安全、压缩。（在五层模型里面已经合并到了应用层）<br>                信息的语法语义以及他们的关联，如加密解密、转换翻译、压缩解压<br>                格式有，JPEG、ASCll、EBCDIC、加密格式等 [2]<br>                如LPP（轻量级表示协议）</p>
+<p>会话层：建立、管理、终止会话。（在五层模型里面已经合并到了应用层）<br>                不同机器上的用户之间建立及管理会话<br>                对应主机进程，指本地主机与远程主机正在进行的会话<br>                安全协议：SSL（安全套接字层协议）、TLS（安全传输层协议）</p>
+<p>传输层：定义传输数据的协议端口号，以及流控和差错校验。<br>                接受上一层数据，在必要的时候把数据进行切割，并将这些数据交给网络层，并保证这些数据段有效到				达对端<br>                协议有：TCP UDP，数据包一旦离开网卡即进入网络传输层</p>
+<p>网络层：进行逻辑地址寻址，实现不同网络之间的路径选择。<br>                控制子网的运行，如逻辑编址、分组传输、路由选择<br>                协议有：ICMP（互联网控制信息协议） IGMP（组管理协议） IP（IPV4 IPV6）（互联网协议）<br>                安全协议、路由协议（vrrp虚拟路由冗余）</p>
+<p>数据链路层：建立逻辑连接、进行硬件地址寻址、差错校验 [3] 等功能。（由底层网络定义协议）<br>                        将比特组合成字节进而组合成帧，用MAC地址访问介质，错误发现但不能纠正。<br>                        物理寻址、同时将原始比特流转变为逻辑传输线路<br>                        地址解析协议：ARP、PARP（反向地址转换协议）</p>
+<p>物理层：建立、维护、断开物理连接。（由底层网络定义协议）<br>                机械、电子、定时接口通信信道上的原始比特流传输<br>                TCP&#x2F;IP 层级模型结构，应用层之间的协议通过逐级调用传输层（Transport layer）、网络层（Network 				Layer）和物理数据链路层（Physical Data Link）而可以实现应用层的应用程序通信互联。</p>
 <h1 id="三、虚拟机的网卡与三种连接模式"><a href="#三、虚拟机的网卡与三种连接模式" class="headerlink" title="三、虚拟机的网卡与三种连接模式"></a>三、虚拟机的网卡与三种连接模式</h1><p>图解：</p>
 <img  
                      lazyload
@@ -360,7 +364,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-12-05 21:18:25
+                    :</strong> 2023-12-10 14:44:31
             </li>
         
         <li>
