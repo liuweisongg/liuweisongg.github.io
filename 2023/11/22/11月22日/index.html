@@ -18,15 +18,20 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="article">
+        <meta name="description" content="钓鱼页面搭建 配置代理服务器  1----------------------------------[ProxyList]# add proxy here ...# meanwile# defaults set to &quot;tor&quot;socks4        127.0.0.1 9050----------------------------------将socks4那一行改为：">
+<meta property="og:type" content="article">
 <meta property="og:title" content="11月22日">
 <meta property="og:url" content="http://example.com/2023/11/22/11%E6%9C%8822%E6%97%A5/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="钓鱼页面搭建 配置代理服务器  1----------------------------------[ProxyList]# add proxy here ...# meanwile# defaults set to &quot;tor&quot;socks4        127.0.0.1 9050----------------------------------将socks4那一行改为：">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgDiaoYu1.png">
 <meta property="article:published_time" content="2023-11-22T03:03:59.000Z">
-<meta property="article:modified_time" content="2023-11-22T03:03:59.440Z">
+<meta property="article:modified_time" content="2024-01-08T07:53:07.444Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="钓鱼页面">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgDiaoYu1.png">
     
     
     <!--- Icon Part-->
@@ -234,13 +239,24 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-11-22 11:03:59</span>
-            <span class="mobile">2023-11-22 11:03:59</span>
+            <span class="desktop">2024-01-08 15:53:07</span>
+            <span class="mobile">2024-01-08 15:53:07</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%92%93%E9%B1%BC%E9%A1%B5%E9%9D%A2/">钓鱼页面</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -262,7 +278,39 @@
 
 
         <div class="article-content markdown-body">
-            
+            <h1 id="钓鱼页面搭建"><a href="#钓鱼页面搭建" class="headerlink" title="钓鱼页面搭建"></a>钓鱼页面搭建</h1><ul>
+<li>配置代理服务器</li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------[ProxyList]# add proxy here ...# meanwile# defaults set to &quot;tor&quot;socks4        127.0.0.1 9050----------------------------------将socks4那一行改为：socks5 192.168.2.49   7890# 192.168.2.49是代理服务器地址，7890是代理服务器端口号</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>下载安装 mip22proxychains4 git clone <a class="link"   target="_blank" rel="noopener" href="https://github.com/makdosx/mip22" >https://github.com/makdosx/mip22 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+</li>
+<li><p>sudo proxychains4 -q bash .&#x2F;mip22.sh执行脚本</p>
+</li>
+<li><pre><code>[1] Attack Default（攻击默认值）
+[2] Attack Manual（攻击手动）
+[3] Attack Customize（自定义攻击）
+[4] Apis（Apis）
+[5] Email（电子邮件）
+[6] Vpn（VPN）
+[7] Sound (pc only)（声音（仅限 PC））
+[0] Exit（退出）
+
+这里选择默认的就行，选择 1
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 选择steam模板</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  [1] Localhost  (for practise only)（仅用于练习）</span><br><span class="line">  [2] LocalhostRun  (alternative)（替代方案）</span><br><span class="line">  [3] Cloudflared  (recommended)（推荐）</span><br><span class="line">  [4] Ngrok  (first install token from menu)（首先从菜单中安装令牌）</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  默认推荐使用3</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+<li><p>访问该钓鱼网页的系统信息就会保存在 <code>~/mip22/fingerprints.txt</code> 文件中。而输入的密码就会保存再 <code>~/mip22/data.txt</code> 中</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgDiaoYu1.png"
+                     
+                ></p>
+</li>
+</ul>
+
         </div>
 
         
@@ -276,7 +324,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-11-22 11:03:59
+                    :</strong> 2024-01-08 15:53:07
             </li>
         
         <li>
@@ -297,6 +345,14 @@
             </div>
         
 
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%92%93%E9%B1%BC%E9%A1%B5%E9%9D%A2/">#钓鱼页面</a>&nbsp;
+                    </li>
+                
+            </ul>
         
 
         
@@ -392,7 +448,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">11月22日</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%92%93%E9%B1%BC%E9%A1%B5%E9%9D%A2%E6%90%AD%E5%BB%BA"><span class="nav-text">钓鱼页面搭建</span></a></li></ol>
 
     </div>
 </div>
