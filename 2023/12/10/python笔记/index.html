@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="刘伟松">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/12/10/python笔记/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="第一章while Ture 结果为真一直进行循环break 结束循环continue 结束当前循环进行下一循环字符串是可迭代的for循环     for 变量 in 可迭代的东西         代码     把可迭代的东西中的每一项内容拿出来，挨个的赋值给变量，每一次赋值都要执行一次循环体（代码）  for循环计数需要借助range函数pass代码占位符 二、第二章基础数据类型int：整数类型f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python笔记">
+<meta property="og:url" content="http://example.com/2023/12/10/python%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章while Ture 结果为真一直进行循环break 结束循环continue 结束当前循环进行下一循环字符串是可迭代的for循环     for 变量 in 可迭代的东西         代码     把可迭代的东西中的每一项内容拿出来，挨个的赋值给变量，每一次赋值都要执行一次循环体（代码）  for循环计数需要借助range函数pass代码占位符 二、第二章基础数据类型int：整数类型f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgpythonzhuangshiqi.png">
+<meta property="article:published_time" content="2023-12-10T02:43:35.000Z">
+<meta property="article:modified_time" content="2023-12-21T14:31:06.235Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgpythonzhuangshiqi.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            python笔记 -
+        
+        欢迎光临
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"有志者，事竟成。","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                欢迎光临
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">python笔记</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">刘伟松</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-12-10 10:43:35</span>
+        <span class="mobile">2023-12-10 10:43:35</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-12-21 22:31:06</span>
+            <span class="mobile">2023-12-21 22:31:06</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p>while Ture 结果为真一直进行循环<br>break 结束循环<br>continue 结束当前循环进行下一循环<br>字符串是可迭代的<br>for循环</p>
+<pre><code>    for 变量 in 可迭代的东西
+        代码
+    把可迭代的东西中的每一项内容拿出来，挨个的赋值给变量，每一次赋值都要执行一次循环体（代码）
+</code></pre>
+<p>for循环计数需要借助range函数<br>pass代码占位符</p>
+<h2 id="二、第二章"><a href="#二、第二章" class="headerlink" title="二、第二章"></a>二、第二章</h2><p>基础数据类型<br>int：整数类型<br>float：小数，浮点数（数据范围是无限的）<br>bool：用来做条件判断的  取值范围：Ture，False  在pytho中0是False其余是Ture，非空字符串为Ture，空字符串为False</p>
+<p>字符串<br>1.字符串格式化 %s字符串占位 %d整数占位 f-string格式化<br>2.索引和切片  索引：按照位置提取元素  s[start:end]从start切到end，end不取，只能从左往右切 s[::-1]表示从右往左，-1表示步长<br>3.字符串常规操作，不会改变原字符串 s.upper把所有字母变成大写<br>4.替换和切割 字符串.strip去掉左右两边的空白符（空格，\t,\n）.replace(“ “ “”)去掉所有空格。 .split(切割内容) 切割<br>5.查找和判断 in可以做条件上的判断 .startwith&#x2F;.endwith以开头和结尾  isdigit判断字符串是否由整数组成</p>
+<p>列表<br>list<br> a &#x3D; [“asdd”,”dad”[1,2,就hi的]]<br> 像字符串一样有索引和切片<br> lst.append添加内容 .insert插入 .extend合并两个表 .remove直接删除元素<br> lst.sort()对列表升序 lst.sort(reverse&#x3D;True)降序排列 for循环的bug</p>
+<p> 元组<br> tuple ,固定元组元素后地址不能改，如果元组中只有一个元素要加逗号才能认为是元组</p>
+<p> 集合<br> set 特点无序 s &#x3D; {}插入元素才能是集合 存储数据需是可哈希 可哈希类型(不可变的数据类型)：int str tuple bool  可变的数据类型：list，dict，set<br> s &#x3D; set（）创建空集合 &amp;交集 |并集 -差集  set集合可以去除重复</p>
+<p> 字典<br> dict<br> 字典是以键值对的形式进行存储数据的<br> {key：value，key2：value} 字典的key必须是可哈希的，key值不可重复，有新的value值进来直接覆盖原来的值<br> dic.setdefaut()设置默认值  dic.pop(key)根据key删除<br> print(dic[key])如果key不存在，程序报错，适用于key没问题<br> print（dic.get(key)）key不存在，返回none，适用于不确定key .keys()拿所有key值 .values()拿所有value值<br> for key.value in dic.items()拿到所有key和value值</p>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><p>字符集和编码<br> 二进制转十进制</p>
+<p> 算数运算：+ - * &#x2F; % &#x2F;&#x2F;<br> 比较运算 &lt;&gt; &lt;&#x3D; &gt;&#x3D; !&#x3D; &#x3D;&#x3D;<br> 赋值运算 &#x3D; +&#x3D; -&#x3D; *&#x3D; a +&#x3D; b a&#x3D;a+b<br> 逻辑运算 and 左右两端同时成立<br>        or 左右两端有一个成立<br>        not 非<br>        运算顺序，先算括号&gt;not&gt;and&gt;or<br> 成员运算 in not in</p>
+<p> 文件操作<br> 1.找到这个文件并打开他<br> open(文件路径，mode&#x3D;“”，encoding&#x3D;“”)<br>    mode：r 读取 、w 写文件，每一次open都会清空内容 、 a append 追加写、 b 读取非文本文件<br>    f.close（）关闭文件<br> with打开文件不用关闭</p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><p> 函数<br> 定义：对某一个特定的功能或者代码块进行封装，在需要使用该功能的时候直接调用即可<br>      def 函数的名字():<br>          被封装的功能或者代码块<br> 调用：函数的名字（）<br> 参数：在函数调用时给函数传递一些信息，分类：1.形参：在函数定义时，需要准备一些变量来接收信息<br>                                            位置参数：按照位置一个一个的去声明变量<br>                                            默认值参数：在函数声明时给变量一个默认值<br>                                            动态传参：<em>表示位置参数的动态传参，接受的参数放在元组里<br>                                                    *<em>表示接受关键字的动态传参，接受的参数放在字典里<br>                                            位置参数在前面，</em>，默认值在后面，*</em>  参数可以随意搭配<br>                                    2.实参：实际在调用的时候传递的信息<br>                                            位置参数：按照位置进行传递参数<br>                                            关键字参数：按照参数的名字进行传递参数<br>                                            混合参数：位置参数放在前面，关键字参数放在后面<br>                                            *把列表打散成位置参数进行传递<br>                                            **把字典自动转换成关键字参数进行传递<br> 返回值：函数执行之后，会给调用方一个结果<br>        def fuc(a,b)<br>            a&#x3D;return a+b<br>           print(a)<br>        关于return：  1.如果函数内没有return，此时外界收到的是None<br>                     2.如果写了return<br>                                1.只写了return，后面不跟数据，此时收到的依然是None<br>                                2.return 值，此时表示函数有一个返回值 外界收到一个值<br>                                3.return 值1 值 2…外界可以收到多个值<br>                     函数如果执行到了return函数就会立即停止返回内容,函数内的return的后续代码不会执行</p>
+<p>内置函数<br>  bin（）ob二进制 oct（）0o八进制 hex（）0x十六进制<br>  print（pow（a，b））&#x3D;print（a**b）a的b次方<br>  slice（）切片</p>
+<p>format格式化  例：a &#x3D; 18<br>                  print(format(a,”08b”))<br>                  把a格式化成二进制并补齐8位，只补齐多的话照常<br>  all 当成and来看<br>  any 当成or来看<br>  enumerate可以直接拿到索引和元素<br>  作用域：局部变量和全局变量，想访问局部变量需要用return返回值传参</p>
+<p>1.函数可以作为返回值返回<br>2.函数可以作为参数进行互相穿递<br>函数名实际上就是一个变量名，都表示一个内存地址</p>
+<p>global在局部引入全局变量</p>
+<p>例：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">9</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hanshu</span>():</span><br><span class="line">   <span class="keyword">global</span> a</span><br><span class="line">    a=<span class="number">8</span></span><br><span class="line">hanshu()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure></div>
+
+<p>结果：8</p>
+<p>nonlocal在局部引入外层的局部变量</p>
+<p>例：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">hanshu</span>():</span><br><span class="line">    a=<span class="number">7</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hanshuyi</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> a</span><br><span class="line">        a=<span class="number">8</span></span><br><span class="line">    hanshuyi()</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br><span class="line">hanshu()</span><br></pre></td></tr></table></figure></div>
+
+<p>结果：8</p>
+<p>闭包本质：内层函数对外层函数的局部变量的使用</p>
+<p>​        作用：1.可以让一个变量常驻内存</p>
+<p>例：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">hanshu</span>():</span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hanshuyi</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> a</span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">return</span> hanshuyi</span><br><span class="line">ret = hanshu()</span><br><span class="line">b1 = ret()</span><br><span class="line"><span class="built_in">print</span>(b1)</span><br><span class="line">b2 = ret()</span><br><span class="line"><span class="built_in">print</span>(b2)</span><br></pre></td></tr></table></figure></div>
+
+<p>结果：2</p>
+<p>​		    3</p>
+<p>装饰器：在不改变原有函数调用的情况下，给函数增加新的功能</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">buff</span>(<span class="params">jiacheng</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;红&quot;</span>)</span><br><span class="line">    jiacheng()</span><br><span class="line">    <span class="keyword">return</span> jiacheng</span><br><span class="line"><span class="meta">@buff</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">zhaoxin</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;简单打野&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">zhaoyun</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;同样打野&quot;</span>)</span><br><span class="line"></span><br><span class="line">zhaoxin()</span><br></pre></td></tr></table></figure></div>
+
+<p>结果： <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgpythonzhuangshiqi.png"
+                     
+                ></p>
+<p>装饰器雏形：</p>
+<p>def wrapper(fn):  wrapper:装饰器，fn:目标函数</p>
+<p>​		def  inner（*args，**kwargs）：</p>
+<p>​					#在目标函数执行之前….</p>
+<p>​				ret &#x3D; fn(*args,**kwargs)  #执行目标函数</p>
+<p>​					#在目标函数之后…</p>
+<p>​						return ret</p>
+<p>​			return inner   #别加（）</p>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>可迭代的数据类型都会提供一个叫迭代器的东西，这个迭代器可以帮我们把数据类型中的所有数据逐一的拿到。</p>
+<p>获取迭代器的两种方案：</p>
+<p>​		1.iter()内置函数可以直接拿到迭代器</p>
+<p>​		2.<code>__iter__()</code> 特殊方法</p>
+<p>从迭代器中拿到数据：</p>
+<p>​		1.next()内置函数</p>
+<p>​		2.<code>__next__()</code>特殊方法</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> python笔记</li>
+        <li><strong>Author:</strong> 刘伟松</li>
+        <li><strong>Created at
+                :</strong> 2023-12-10 10:43:35</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2023-12-21 22:31:06
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2023/12/10/python笔记/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+            This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/12/11/12%E6%9C%8811%E6%97%A5%E2%80%94%E2%80%94vue%E4%BB%BF%E5%88%B6%E9%A1%B5%E9%9D%A2%E5%8F%8Avue%E8%AF%AD%E6%B3%95%E4%BD%BF%E7%94%A8/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">12月11日——vue仿制页面及vue语法使用</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/12/06/12%E6%9C%886%E6%97%A5%E2%80%94%E2%80%94html5%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%92%8Ccss%E3%80%81linux%E7%9A%84yum%E5%AE%89%E8%A3%85/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">12月6日——html5基本语法和css、linux的yum安装</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from '/js/libs/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">python笔记</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="nav-text">二、第二章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="nav-text">第三章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="nav-text">第四章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-text">迭代器</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">刘伟松</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

